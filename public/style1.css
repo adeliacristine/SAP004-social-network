@@ -1,7 +1,8 @@
 a {
   text-decoration: none;
 }
-.posted-area-coment{
+
+.posted-area-coment {
   background-color: blue;
 }
 
@@ -21,7 +22,6 @@ input[type="checkbox"] {
   left: -282px;
   margin-top: 33px;
 }
-
 
 input[type="checkbox"]:checked~.nav {
   transform: translateX(282px);
@@ -208,9 +208,7 @@ input[type="checkbox"]:checked~.nav {
 
 .carregando {
   margin-top: 200px;
-
 }
-
 
 .newpost-container {
   display: flex;
@@ -262,33 +260,26 @@ input[type="checkbox"]:checked~.nav {
   display: none;
 }
 
-
 @media only screen and (min-width: 1500px) {
   .cor-menu {
     height: 12%;
   }
-
   .feed-container {
     height: 105px;
   }
-
   .feed-bttn {
     font-size: larger;
   }
-
   .img-menu {
     height: 43px;
   }
-
   .title {
     padding-top: 22px;
     font-size: xx-large;
   }
-
   input[type="checkbox"]:checked~.nav {
     transform: translateX(324px);
   }
-
   .link {
     display: block;
     padding: 28px 5px;
@@ -298,42 +289,34 @@ input[type="checkbox"]:checked~.nav {
     margin: 8px;
     font-size: xx-large;
   }
-
   .entire-container {
     display: flex;
   }
-
   .perfil-style {
     font-size: xx-large;
   }
-
   .post-and-coment {
     padding-top: 32px;
     width: 60%;
     margin: 8px;
   }
-
   .textarea-style {
     margin: 24px;
     padding: 18px;
     font-size: xx-large;
   }
-
   .perfil-container {
     padding-left: 30px;
     margin-top: -4.5%;
   }
-
   .name {
     padding: 15px;
     font-size: x-large;
   }
-
   .post-box {
     padding: 20px;
     font-size: x-large;
   }
-
   .btn-area-posted {
     margin-top: 12px;
   }

@@ -68,16 +68,16 @@ export const creatNewComent = (textPost, IDdoallPost) => {
     time: new Date().toLocaleTimeString(),
     id: firebase.auth().currentUser.uid,
     user: firebase.auth().currentUser.displayName,
-    
+
   })
- 
+
     .then(() => {
-     console.log('deu , foi!');
+      console.log('deu , foi!');
     })
     .catch((error) => {
       console.log('deu ruim', error);
     });
-    
+
 };
 export const readComent = (callback, IDdoallPost) => {
   firebase.firestore()
@@ -86,25 +86,25 @@ export const readComent = (callback, IDdoallPost) => {
     .get().then((querySnapshot) => {
       const user = firebase.auth().currentUser;
       user.providerData.forEach((profile) => {
-       // console.log(profile.displayName);
+        // console.log(profile.displayName);
         const posts = [];
         const nomes = profile.displayName;
         querySnapshot.forEach((doc) => {
           posts.push({ ...doc.data(), idDoc: doc.id });
-         console.log(doc.data());
-         console.log(doc.id);
+          console.log(doc.data());
+          console.log(doc.id);
         });
         callback(posts, nomes);
       });
     });
 };
 export const deletePostComent = (IDdoallPost, idComent) => {
-console.log(IDdoallPost, idComent);
+  console.log(IDdoallPost, idComent);
   firebase.firestore().colletion('allpost').doc(IDdoallPost).colletion('comentario')
-.doc(idComent)
-.delete()
+    .doc(idComent)
+    .delete()
     .then(function () {
-    }).catch(function (error) { 
+    }).catch(function (error) {
       console.log(error);
     });
 };

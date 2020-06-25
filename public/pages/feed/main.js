@@ -90,8 +90,8 @@ export const feed = () => {
       )
       .join("");
     postMessage.appendChild(containerDivNova);
-   
-  
+
+
 
     const loginEvent = () => {
       const usuarioAtual = firebase.auth().currentUser.uid;
@@ -140,7 +140,7 @@ export const feed = () => {
           btnEdit1.classList.add("hide");
           console.log(event.target.dataset.idedit);
           console.log(event.target.dataset.editart);
-          
+
         });
       });
     };
@@ -188,14 +188,16 @@ export const feed = () => {
         });
       });
     };
-    
 
+   
     const comentTemplate = (array) => {
-      const postComentario = container.querySelector("#new-coment");
+      //const postId = event.target.dataset.comentar;
+    //console.log(postId);
+      const postComentario = container.querySelector(`div[data-comentpost ='${post.idDoc}']`);
       postComentario.innerHTML = '';
-    const containerComent = document.createElement('div');
-    postComentario.innerHTML = array.map( post => 
-    `<section class='posted-area-coment'>
+      const containerComent = document.createElement('div');
+      postComentario.innerHTML = array.map(post =>
+        `<section class='posted-area-coment'>
     <h1>${post.user}</h1>
     <span>${post.date}</span>
     <span>${post.time}</span>
@@ -206,36 +208,34 @@ export const feed = () => {
     <button class='feed-bttn' id='deletar-coment' data-id='${post.id}' data-delcoment = '${post.idDoc}'><i class="far fa-trash-alt"></i></button>
     <button class='feed-bttn' id='editar-coment' data-edit = '${post.idDoc}'><i class="fas fa-edit"></i></button>
     </div></section><br>`).join('');
-    postComentario.appendChild(containerComent);
+      postComentario.appendChild(containerComent);
 
-    
-    const deletEventComent = () => {
-      const btnDel = container.querySelectorAll("#deletar-coment");
-    
-      btnDel.forEach((element) => {
-        element.addEventListener("click", (event) => {
-          event.preventDefault();
-          const idDoPost = event.target.dataset.id;
-          console.log(idDoPost);
-          const usuarioAtual = firebase.auth().currentUser.uid;
-          if (element.dataset.id === usuarioAtual) {
-            deletePostComent(idDoPost,element.dataset.delcoment);
-          } else {
-            console.log("deu ruim");
-            console.log(element.dataset.id);
-            console.log(usuarioAtual);
-          }
+
+      const deletEventComent = () => {
+        const btnDel = container.querySelectorAll("#deletar-coment");
+
+        btnDel.forEach((element) => {
+          element.addEventListener("click", (event) => {
+            event.preventDefault();
+            const idDoPost = event.target.dataset.id;
+            console.log(idDoPost);
+            const usuarioAtual = firebase.auth().currentUser.uid;
+            if (element.dataset.id === usuarioAtual) {
+              deletePostComent(idDoPost, element.dataset.delcoment);
+            } else {
+              console.log("deu ruim");
+              console.log(element.dataset.id);
+              console.log(usuarioAtual);
+            }
+          });
         });
-      });
-    };
-   deletEventComent();
+      };
+      deletEventComent();
     };
     //comtpost  button[data-save='${postId}'
     const comentEvent = () => {
       const bntComent = container.querySelectorAll('#btn-comentar');
-      //const comentario = container.querySelector('#post-coment');
       bntComent.forEach(element => {
-       
         element.addEventListener('click', (event) => {
           event.preventDefault();
           const postId = event.target.dataset.comentar;
@@ -243,40 +243,58 @@ export const feed = () => {
           comentario.innerHTML = '';
           console.log('clicou');
           console.log(event.target.dataset.comentar);
-          
           const containerComent = document.createElement('div');
-        comentario.innerHTML = `
+          comentario.innerHTML = `
+          <section>
     <section><textarea id='post-text-coment' class="textarea-style">Comente aqui</textarea>
-    <button class='feed-bttn' id='btnn-coment' >Comentar</button></section>
+    <button class='feed-bttn' id='btnn-coment'data-coment2='${post.idDoc}' >Comentar</button></section>
     
   <section class='newpost-container'>
-  <div class='li-posted' id='new-coment'></div>
-  </section>`;
-    comentario.appendChild(containerComent);
-    
+  <div class='li-posted' id='new-coment' data-comentpost='${post.idDoc}'></div>
+  </section> </section>`;
+          comentario.appendChild(containerComent);
 
-const coment = container.querySelector("#post-text-coment");
-const btnnComent = container.querySelector('#btnn-coment');
-const ids = event.target.dataset.comentar;
 
-    
-      btnnComent.addEventListener("click", (event) => {
-        event.preventDefault();
-       
-        console.log('eita, fuincoou o botão comentar!');
-        console.log(coment.value);
-        console.log(ids);
-        creatNewComent(coment.value, ids);
-        readComent(comentTemplate, ids);
-        coment.value = "";
-        coment.innerHTML = "";
+          const coment = container.querySelector("#post-text-coment");
+          //const btnnComent = container.querySelector('#btnn-coment');
+          const ids = event.target.dataset.comentar;
+
+          /*  btnnComent.addEventListener("click", (event) => {
+              event.preventDefault();
+              console.log('eita, fuincoou o botão comentar!');
+             console.log(coment.value);
+              console.log(ids);
+              creatNewComent(coment.value, ids);
+              readComent(comentTemplate, ids);
+              coment.value = "";
+              coment.innerHTML = "";
+            });*/
+
+
+          const comentarEvent = () => {
+            const btnnComent = container.querySelectorAll('#btnn-coment');
+            btnnComent.forEach((element) => {
+              element.addEventListener("click", (event) => {
+                event.preventDefault();
+                console.log(event.target.dataset.comentar);
+                /*const postId = event.target.dataset.coment2;
+                console.log(postId);*/
+                //const postagem = container.querySelector(`div[data-comentpost='${postId}']`);
+                console.log('foi aqui');
+                
+                creatNewComent(coment.value, ids);
+                readComent(comentTemplate, ids);
+                coment.value = "";
+                coment.innerHTML = "";
+              });
+
+            });
+
+          };
+          comentarEvent();
+        });
       });
-   
- 
-
-  });
-});
-};
+    };
 
     likeEvent();
     deletEvent();
@@ -286,8 +304,9 @@ const ids = event.target.dataset.comentar;
     loginEventEdit();
     comentEvent();
     creatNewComent();
-    
-};
+    comentarEvent();
+
+  };
 
   readPosts(postTemplate);
 
@@ -306,7 +325,7 @@ const ids = event.target.dataset.comentar;
       .then(() => {
         window.location.href = "/#login";
       })
-      .catch(() => {});
+      .catch(() => { });
   });
 
   return container;
