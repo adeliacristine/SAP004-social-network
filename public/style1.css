@@ -2,10 +2,6 @@ a {
   text-decoration: none;
 }
 
-.posted-area-coment {
-  background-color: blue;
-}
-
 input[type="checkbox"] {
   display: none;
 }
@@ -23,7 +19,7 @@ input[type="checkbox"] {
   margin-top: 33px;
 }
 
-input[type="checkbox"]:checked~.nav {
+input[type="checkbox"]:checked ~ .nav {
   transform: translateX(282px);
 }
 
@@ -202,6 +198,29 @@ input[type="checkbox"]:checked~.nav {
   margin-top: 5%;
 }
 
+.li-comented {
+  display: flex;
+  justify-content: center;
+  margin-top: -6%;
+  background: #c7b579c4;
+  border-radius: 6px;
+  padding: 16px;
+  margin-bottom: -2%;
+}
+
+.coment-bttn {
+  height: fit-content;
+  align-self: center;
+}
+
+.posted-area-coment {
+  justify-content: center;
+  margin-top: -1%;
+  background: #c7b579c4;
+  border-radius: 6px;
+  border: 2px solid #fefbe0;
+}
+
 .hide {
   display: none;
 }
@@ -277,7 +296,8 @@ input[type="checkbox"]:checked~.nav {
     padding-top: 22px;
     font-size: xx-large;
   }
-  input[type="checkbox"]:checked~.nav {
+
+  input[type="checkbox"]:checked ~ .nav {
     transform: translateX(324px);
   }
   .link {

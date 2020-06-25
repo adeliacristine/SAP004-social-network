@@ -1,8 +1,8 @@
-import { firebaseLogin } from './data.js';
+import { firebaseLogin } from "./data.js";
 
 export const authLogin = () => {
-  const container = document.createElement('div');
-  container.className ='container-log';
+  const container = document.createElement("div");
+  container.className = "container-log";
 
   const template = `
     <section class='logo'> 
@@ -43,39 +43,46 @@ export const authLogin = () => {
 
   container.innerHTML = template;
 
-  const loginButton = container.querySelector('#login');
-  const registeredEmail = container.querySelector('#e-mail');
-  const registeredPassword = container.querySelector('#password');
- 
+  const loginButton = container.querySelector("#login");
+  const registeredEmail = container.querySelector("#e-mail");
+  const registeredPassword = container.querySelector("#password");
 
   const route = () => {
-    window.location.href = '/#home';
-    
+    window.location.href = "/#home";
   };
-const errorMessages = {
-  'auth/user-not-found': 'Usuário não cadastrado <i class="fas fa-exclamation-triangle"></i>',
-  'auth/wrong-password':'Senha incorreta <i class="fas fa-exclamation-triangle"></i>',
-  'auth/invalid-email': 'E-mail inválido <i class="fas fa-exclamation-triangle"></i>',
-
-}
+  const errorMessages = {
+    "auth/user-not-found":
+      'Usuário não cadastrado <i class="fas fa-exclamation-triangle"></i>',
+    "auth/wrong-password":
+      'Senha incorreta <i class="fas fa-exclamation-triangle"></i>',
+    "auth/invalid-email":
+      'E-mail inválido <i class="fas fa-exclamation-triangle"></i>',
+  };
   const printError = (error) => {
-    document.getElementById('login-error').innerHTML = `${errorMessages[error]}`;
+    document.getElementById(
+      "login-error"
+    ).innerHTML = `${errorMessages[error]}`;
   };
 
-  loginButton.addEventListener('click', () => {
-    const authentication = firebaseLogin(registeredEmail.value, registeredPassword.value, route, printError);
+  loginButton.addEventListener("click", () => {
+    const authentication = firebaseLogin(
+      registeredEmail.value,
+      registeredPassword.value,
+      route,
+      printError
+    );
     firebaseLogin(authentication);
   });
 
-  const btnGoogle = container.querySelector('#google');
-  btnGoogle.addEventListener('click', () => {
+  const btnGoogle = container.querySelector("#google");
+  btnGoogle.addEventListener("click", () => {
     const provider = new firebase.auth.GoogleAuthProvider();
-    // provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-    firebase.auth().signInWithPopup(provider)
+    firebase
+      .auth()
+      .signInWithPopup(provider)
       .then((result) => {
-        console.log('deu certo');
-        window.location.href ='/#home';
-      
+        window.location.href = "/#home";
+
         const token = result.credential.accessToken;
         const user = result.user;
       })
@@ -84,17 +91,16 @@ const errorMessages = {
         const errorMessage = error.message;
         const email = error.email;
         const credential = error.credential;
-        console.log(errorMessage);
       });
   });
-  const bntView = container.querySelector('#view-password');
-  bntView.addEventListener('click', (event) => {
+  const bntView = container.querySelector("#view-password");
+  bntView.addEventListener("click", (event) => {
     event.preventDefault();
-    const senha = container.querySelector('#password');
-    if (senha.type === 'password') {
-      senha.type = 'text';
+    const senha = container.querySelector("#password");
+    if (senha.type === "password") {
+      senha.type = "text";
     } else {
-      senha.type = 'password';
+      senha.type = "password";
     }
   });
   return container;

@@ -1,83 +1,50 @@
-
 export const profile = () => {
-	const container = document.createElement('div');
-  
-	container.innerHTML = `
-	<section class='feed-container cor-menu'>
-	<div class= 'menu-inicial'>
-	<input type ='checkbox' id ='check'>
-	<label for ='check' class='icone'><img src = './imagens/icone.png'></label>
-	  <nav class='nav'>
-	  <a href='/#home'><div class='link'>Home</div></a>
-	  <a href='/#perfil'><div class='link'>Perfil</div></a>
-	  <a href='/#bares'><div class='link'>Bares</div></a>
-	  <a href='/#mesas'><div class='link'>Mesas</div></a>
-	  <a id='sair'><div class='link'>Sair</div></a>
-	  </nav>
-	</div>
-	<div class='title'>
-	<h1>Stay Home Bar</h1>
-	</div>
-	</section>
-  
-  
-	<section class='perfil-style'>
-	<img class="foto-style" src="./imagens/fotodeperfil.jpg">
-	</section>
+  const container = document.createElement('div');
 
-  <section class='post-container'>
-	<form class='post-area'>
-	<div class="bio-infos">
-	<h1 class="text-style">Ana maria</h1>
-	</div>
-	<textarea id='post-text'  class="textarea-style" rows="5" cols="10"
-	>Eu sou muito feliz! Amo o Carnaval!</textarea>
-	<div class="post-btn-area">    
-	<button class='feed-bttn hide' id='btn-salvar' >salvar</button>
-    <button class='feed-bttn ed1 ' id='editar'> <i class="fas fa-edit"></i></button>
-	<button class='btn-style feed-bttn'><a href='/#home'>Voltar<a/></button>  
-	</div>
-	</form>
-	</section>
+  container.innerHTML = `
+<section class='feed-container cor-menu'>
+<div class= 'menu-inicial'>
+<input type ='checkbox' id ='check'>
+<label for ='check' class='icone'><img src = './imagens/icone.png'></label>
+<nav class='nav'>
+<a href='/#home'><div class='link'>Home</div></a>
+<a href='/#perfil'><div class='link'>Perfil</div></a>
+<a href='/#bares'><div class='link'>Bares</div></a>
+<a href='/#mesas'><div class='link'>Mesas</div></a>
+<a id='sair'><div class='link'>Sair</div></a>
+</nav>
+</div>
+<div class='title'>
+<h1>Happy Hour Home</h1>
+</div>
+</section>
   
   
-	<section class='newpost-container'>
-	<form >
-	<ul>
-	<li id='comentarios'></li>
-	</ul>
-	</form>
-	</section>
-	`;
-	
-	
-	const editEvent = () => {
-		const btnEdit = container.querySelector("#editar");
-		const btnSalvar = container.querySelector("#btn-salvar");
-		const texto = container.querySelector(".post-text");
-			btnEdit.addEventListener("click", (event) => {
-			event.preventDefault();
-			  texto.disabled = false;
-			});
-			btnEdit.classList.add("hide"); // Oculta o botão editar
-			btnSalvar.classList.remove("hide"); // Mostra o botão salvar
-		};
-	
-	  const saveEditedEvent = () => {
-		const btnEdit = container.querySelector("#editar");
-		const texto = container.querySelector(".post-text");
-		const btnSalvar = container.querySelector("#btn-salvar");
-			btnSalvar.addEventListener("click", (event) => {
-			event.preventDefault();
-			btnEdit.classList.remove("hide"); // Mostra o botão editar
-			btnSalvar.classList.add("hide"); // Oculta o botão salvar
-			//editPost(btnSalvar.dataset.edit, texto.value);
-		  });
-	  };
+<section class='perfil-style'>
+<img class='foto-style' src='./imagens/profile.jpg'>
+</section>
 
-	  editEvent();
-	  saveEditedEvent();
+<section class='post-container'>
+<form class='post-area'>
+<div class='bio-infos'>
+<h1 class='text-style'> </h1>
+</div>
+<textarea id='post-text'  class='textarea-style' rows='5' cols='10'
+>Página em construção</textarea>
+<div class='post-btn-area'>    
+<button class='btn-style feed-bttn'><a href='/#home'>Voltar<a/></button>  
+</div>
+</form>
+</section>
+  
+<section class='newpost-container'>
+<form >
+<ul>
+<li id='comentarios'></li>
+</ul>
+</form>
+</section>
+`;
 
-
-	return container;
+  return container;
 };

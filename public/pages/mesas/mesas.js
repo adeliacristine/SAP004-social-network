@@ -1,5 +1,3 @@
-
-
 export const table = () => {
   const container = document.createElement('div');
   const template = `

@@ -1,14 +1,21 @@
-export const firebaseRegistration = (registeredEmail, registeredPassword, route, printError, userName) => {
-  firebase.auth().createUserWithEmailAndPassword(registeredEmail, registeredPassword)
+export const firebaseRegistration = (
+  registeredEmail,
+  registeredPassword,
+  route,
+  printError,
+  userName,
+) => {
+  firebase
+    .auth()
+    .createUserWithEmailAndPassword(registeredEmail, registeredPassword)
     .then(() => {
       const user = firebase.auth().currentUser;
-      user.updateProfile({
-        displayName: `${userName}`,
-      }).then(() => {
-        console.log('Update successful');
-      }).catch(() => {
-        console.log('Update fail');
-      });
+      user
+        .updateProfile({
+          displayName: `${userName}`,
+        })
+        .then(() => {})
+        .catch(() => {});
       route();
     })
     .catch((error) => {
