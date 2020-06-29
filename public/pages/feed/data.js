@@ -33,10 +33,10 @@ export const readPosts = (callback) => {
     });
 };
 
-export const editPost = (IDdopost, parametro) => {
+export const editPost = (IDdopost, textEdited) => {
   const db = firebase.firestore();
   db.collection('allPost').doc(IDdopost).update({
-    text: parametro,
+    text: textEdited,
   });
 };
 

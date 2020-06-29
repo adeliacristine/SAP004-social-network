@@ -5,7 +5,7 @@ export const authRegistration = () => {
   container.className = 'container-div';
   const template = `
   <section class='logo-cad'>
-  <img src='./imagens/logo2.png' />
+  <img src='./imagens/logo oficial2.png' />
   </section>
   <section class='register-container'>
     <h2 class='welcome'>Cadastre-se!</h2>
